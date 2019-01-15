@@ -7,4 +7,4 @@ Artificial Intelligence application to be implemented in educational institution
 - [ ] Make grading feature (use row matrices for inputted data and correct answers)
 
 ## Disclaimer
-displayData.m, ex4data1.mat, ex4weights.mat, fmincg.m, predict.m, processImage.m, and randInitializeWeights.m are from Andrew Ng's work. In addition, rgb2ntsc.m's source code is included due to import functionality difficulties.
+displayData.m, ex4data1.mat, ex4weights.mat, predict.m, processImage.m, and randInitializeWeights.m are from Andrew Ng's work. In addition, rgb2ntsc.m's and fmincg.m's source code is included due to import functionality difficulties running on a Windows OS.
