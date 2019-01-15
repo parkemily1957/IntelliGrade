@@ -1,4 +1,4 @@
-function prediction = demo(Theta1, Theta2)
+function prediction = demo(Theta1, Theta2, numProblems)
   
   % Default value
   prediction = "Not found...";
@@ -6,7 +6,9 @@ function prediction = demo(Theta1, Theta2)
   % Input a new value for the model to predict on at least once before stopping
   demoing = 1;
   
-  while demoing == 1
+  count = 0;
+  
+  while demoing == 1 && count != numProblems
     
     fprintf("-----------------------");
     
@@ -14,13 +16,14 @@ function prediction = demo(Theta1, Theta2)
     pause();
     
     % Load image, process for classifier, and return prediction
-    originalImage = imread("Demo.png");
-    processedImage = processImage(originalImage);
+    processedImage = processImage("Demo.jpg");
     prediction = predict(Theta1, Theta2, processedImage);
     
     % Concatenate prediction to the output string after converting from integer to string value
     fprintf(["\n\nYour number: " mat2str(prediction)]);
     fprintf("\n");
+    
+    count++;
     
     fprintf("\nPress a key to continue...");
     pause();
@@ -28,6 +31,7 @@ function prediction = demo(Theta1, Theta2)
     
     % Returns 1 if "yes" and 0 if "no"
     demoing = yes_or_no("Do you want to try another one?!?!?");
+    
     
   endwhile
   
