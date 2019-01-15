@@ -11,7 +11,7 @@ num_labels = 10;          % 10 labels, from 1 to 10
 fprintf('Loading and Visualizing Data ...\n')
 load('ex4data1.mat');
 m = size(X, 1);
-
+  
 % Splitting data: 20% is in the test set, 20% is in the corss validation set, and 60% is the training data
 testSet = [X(1:100, :); X(501:600, :); X(1001:1100, :); X(1501:1600, :); ...
            X(2001:2100, :); X(2501:2600, :); X(3001:3100, :); ...
@@ -28,8 +28,11 @@ crossValidationSet = [X(101:200, :); X(601:700, :); X(1101:1200, :); ...
 % Empty matrix to be filled with the training data (X without all the test and CV data)
 B = [];
 
-% Empty solutions matrix to be filled with training data solutions
+% Empty solutions matrices (using supervised learning)
 trainingSolutions = [];
+crossValidationSolutions = [];
+testSolutions = [];
+
 
 % Filtering X into the training data
 for i = 1 : 5000
@@ -37,6 +40,14 @@ for i = 1 : 5000
   if indexT(i) == 0 && indexCV(i) == 0
       B = [B; X(i, :)];
       trainingSolutions = [trainingSolutions; y(i)];
+  endif
+  
+  if indexCV(i) != 0
+    crossValidationSolutions = [crossValidationSolutions; y(i)];
+  endif
+  
+  if indexT(i) != 0
+    testSolutions = [testSolutions; y(i)];
   endif
   
 endfor
@@ -72,10 +83,10 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-options = optimset('MaxIter', 200);
+options = optimset('MaxIter', 1000);
 
 %  You should also try different values of lambda
-lambda = 1;
+lambda = 0.5;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
@@ -99,6 +110,12 @@ pause;
 
 pred = predict(Theta1, Theta2, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == trainingSolutions)) * 100);
+
+pred = predict(Theta1, Theta2, crossValidationSet);
+fprintf('\nCross Validation Set Accuracy: %f\n', mean(double(pred == crossValidationSolutions)) * 100);
+
+pred = predict(Theta1, Theta2, testSet);
+fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
 
 % -------------------------------------------------------------------
 
