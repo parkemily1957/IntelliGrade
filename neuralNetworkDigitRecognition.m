@@ -11,7 +11,7 @@ num_labels = 10;          % 10 labels, from 1 to 10
 fprintf('Loading and Visualizing Data ...\n')
 load('ex4data1.mat');
 m = size(X, 1);
-  
+
 % Splitting data: 20% is in the test set, 20% is in the corss validation set, and 60% is the training data
 testSet = [X(1:100, :); X(501:600, :); X(1001:1100, :); X(1501:1600, :); ...
            X(2001:2100, :); X(2501:2600, :); X(3001:3100, :); ...
@@ -28,11 +28,10 @@ crossValidationSet = [X(101:200, :); X(601:700, :); X(1101:1200, :); ...
 % Empty matrix to be filled with the training data (X without all the test and CV data)
 B = [];
 
-% Empty solutions matrices (using supervised learning)
+% Empty solutions matrices
 trainingSolutions = [];
 crossValidationSolutions = [];
 testSolutions = [];
-
 
 % Filtering X into the training data
 for i = 1 : 5000
@@ -43,11 +42,11 @@ for i = 1 : 5000
   endif
   
   if indexCV(i) != 0
-    crossValidationSolutions = [crossValidationSolutions; y(i)];
+      crossValidationSolutions = [crossValidationSolutions; y(i)];
   endif
   
   if indexT(i) != 0
-    testSolutions = [testSolutions; y(i)];
+      testSolutions = [testSolutions; y(i)];
   endif
   
 endfor
@@ -83,7 +82,8 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-options = optimset('MaxIter', 1000);
+numIterations = 1000;
+options = optimset('MaxIter', numIterations);
 
 %  You should also try different values of lambda
 lambda = 0.5;
@@ -96,7 +96,7 @@ costFunction = @(p) nnCostFunction(p, ...
 
 % Now, costFunction is a function that takes in only one argument (the
 % neural network parameters)
-[nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
+[nn_params, cost, i] = fmincg(costFunction, initial_nn_params, options);
 
 % Obtain Theta1 and Theta2 back from nn_params
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
@@ -107,6 +107,13 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+% Graphing cost vs iterations
+figure;
+plot(0:numIterations - 1, cost(1:numIterations));
+title("Cost Function vs. Number of Iterations");
+xlabel('Num of iterations');
+ylabel('Cost!');
 
 pred = predict(Theta1, Theta2, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == trainingSolutions)) * 100);
