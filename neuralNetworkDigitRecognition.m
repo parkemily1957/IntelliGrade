@@ -127,7 +127,6 @@ fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
 % -------------------------------------------------------------------
 
 % Custom Image Processing and Predictions
-pkg install -forge image;
 pkg load image;
 
 fprintf("\nPress Enter when you're ready for the demo!!!");
