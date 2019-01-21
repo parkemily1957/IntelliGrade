@@ -1,4 +1,4 @@
-# Smart-Grader
+# IntelliHear
 Artificial Intelligence application to be implemented in educational institutions as a faster and easier way to grade free response questions (FRQs).
 
  ## To Do	

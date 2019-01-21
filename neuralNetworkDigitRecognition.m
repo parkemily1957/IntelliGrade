@@ -86,7 +86,7 @@ numIterations = 1000;
 options = optimset('MaxIter', numIterations);
 
 %  You should also try different values of lambda
-lambda = 0.5;
+lambda = 1;
 
 % Create "short hand" for the cost function to be minimized
 costFunction = @(p) nnCostFunction(p, ...
@@ -127,6 +127,7 @@ fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
 % -------------------------------------------------------------------
 
 % Custom Image Processing and Predictions
+pkg install -forge image;
 pkg load image;
 
 fprintf("\nPress Enter when you're ready for the demo!!!");
