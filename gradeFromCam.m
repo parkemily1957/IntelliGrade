@@ -1,4 +1,15 @@
-function [problemsCorrect percentCorrect] = gradeFromCam (correctAnswers, Theta1, Theta2)
+function [problemsCorrect percentCorrect] = gradeFromCam (Theta1, Theta2)
+    
+  numAns = input("How many questions are on your test? ");
+  
+  correctAnswers = [];
+  fprintf("\nPlease type in the answers!\n");
+  
+  for i = 1 : numAns
+    
+    correctAnswers = [correctAnswers; input(["Answer to number " mat2str(i) ": "])];
+    
+  endfor 
     
   for i = 1 : length(correctAnswers)
     
