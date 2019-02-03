@@ -130,6 +130,8 @@ fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
 pkg load image;
 
 fprintf("\nPress Enter when you're ready for the demo!!!\n\n");
+
+fprintf("\n--------------------------------------------------\n");
 %demo(Theta1, Theta2, 1000);
 
 gradeFromCam(Theta1, Theta2);
