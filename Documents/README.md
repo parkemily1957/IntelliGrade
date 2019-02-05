@@ -19,3 +19,8 @@ This answer sheet is designed as a basis to test different computer vision metho
 Goal: To determine the best algorithm for detecting the different answer boxes on the page.
 
 Immediate, future plans: Shrink down the boxes and add numbering to the questions as a real answer sheet would have.
+<<<<<<< HEAD:Documents/README.md.txt
+=======
+
+Future future plans: Redesign the boxes to something smaller (such as four points along the edge of each question). This way, less ink will be used (when multiplied to the magnitude corporations such as CollegeBoard use, this could save a significant amount of money).
+>>>>>>> e3b939c8668c1703182fa235fc6b0d361d22c986:Documents/README.md
