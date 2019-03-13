@@ -53,6 +53,20 @@ endfor
 
 X = B;
 
+% Custom Data Accuracy Tests
+test0 = processImage("0.png");
+test1 = processImage("1.png");
+test2 = processImage("2.png");
+test3 = processImage("3.png");
+test4 = processImage("4.png");
+test5 = processImage("5.png");
+test6 = processImage("6.png");
+test7 = processImage("7.png");
+test8 = processImage("8.png");
+test9 = processImage("9.png");
+customData = [test0 test1 test2 test3 test4 test5 test6 test7 test8 test9];
+customDataAnswers = [0 1 2 3 4 5 6 7 8 9];
+
 % Randomly select 100 data points to display
 sel = randperm(size(X, 1));
 sel = sel(1:100);
@@ -82,7 +96,7 @@ fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
 %  value to see how more training helps.
-numIterations = 1000;
+numIterations = 500;
 options = optimset('MaxIter', numIterations);
 
 %  You should also try different values of lambda
@@ -115,6 +129,8 @@ title("Cost Function vs. Number of Iterations");
 xlabel('Num of iterations');
 ylabel('Cost!');
 
+
+% Accuracy Assessments
 pred = predict(Theta1, Theta2, X);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == trainingSolutions)) * 100);
 
@@ -123,6 +139,11 @@ fprintf('\nCross Validation Set Accuracy: %f\n', mean(double(pred == crossValida
 
 pred = predict(Theta1, Theta2, testSet);
 fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
+
+%{
+pred = predict(Theta1, Theta2, customData);
+fprintf('\nCustom Data Set Accuracy: %f\n', mean(double(pred == customDataAnswers)) * 100);
+%}
 
 % -------------------------------------------------------------------
 

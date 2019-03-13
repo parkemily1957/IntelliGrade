@@ -1,3 +1,5 @@
+% Grading Function!!!
+
 function [problemsCorrect percentCorrect] = gradeFromCam (Theta1, Theta2)
     
   numAns = input("How many questions are on your test? ");

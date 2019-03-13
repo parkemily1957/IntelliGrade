@@ -16,7 +16,7 @@ function prediction = demo(Theta1, Theta2, numProblems)
     pause();
     
     % Load image, process for classifier, and return prediction
-    processedImage = processImage("Demo.jpg");
+    processedImage = processImage(uigetfile("C:\Users\zpu\Documents\High School 2016-2020\2018-2019, Junior Year\Science Fair\IntelliGrade"));
     prediction = predict(Theta1, Theta2, processedImage);
     
     % Concatenate prediction to the output string after converting from integer to string value

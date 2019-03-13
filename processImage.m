@@ -26,6 +26,7 @@ Image3DmatrixRGB = imread(fileName);
 Image3DmatrixYIQ = rgb2ntsc(Image3DmatrixRGB );
 % Convert to grays keeping only luminance (Y) and discard chrominance (IQ)
 Image2DmatrixBW  = Image3DmatrixYIQ(:,:,1);
+Image2DmatrixBW = imcrop(Image2DmatrixBW, [11 11 79 79]);
 % Get the size of your image
 oldSize = size(Image2DmatrixBW);
 % Obtain crop size toward centered square (cropDelta)
