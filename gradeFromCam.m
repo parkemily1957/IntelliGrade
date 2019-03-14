@@ -9,7 +9,7 @@ function [problemsCorrect percentCorrect] = gradeFromCam (Theta1, Theta2)
   
   for i = 1 : numAns
     
-    correctAnswers = [correctAnswers; input(["Answer to number " mat2str(i) ": "])];
+    correctAnswers = [correctAnswers input(["Answer to number " mat2str(i) ": "])];
     
   endfor 
     
