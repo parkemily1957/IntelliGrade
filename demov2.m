@@ -2,6 +2,7 @@
 clear ; close all; clc
   
 % Load variables (avoid live training to save time)
+fprintf('Importing data and processing images...');
 load("ParametersV3");
 fprintf('All parameters learned by the neural network have been loaded in...');
 
