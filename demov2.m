@@ -1,8 +1,9 @@
 % Initialization
 clear ; close all; clc
   
-% Load variables
-load("ParametersV2");
+% Load variables (avoid live training to save time)
+load("ParametersV3");
+fprintf('All parameters learned by the neural network have been loaded in...');
 
 % Randomly select 100 data points to display
 sel = randperm(size(X, 1));
@@ -27,7 +28,11 @@ fprintf('\nCross Validation Set Accuracy: %f\n', mean(double(pred == crossValida
 pred = predict(Theta1, Theta2, testSet);
 fprintf('\nTest Set Accuracy: %f\n', mean(double(pred == testSolutions)) * 100);
 
+fprintf('-----------------------------');
+
 pkg load image;
 fprintf("\nPress Enter when you're ready for the demo!!!\n\n");
 
-pkg load instrument-control;
+%demo(Theta1, Theta2, 1000);
+
+gradeFromCam(Theta1, Theta2);
